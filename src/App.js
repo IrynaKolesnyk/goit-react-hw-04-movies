@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import Header from "./component/header/Header";
+import Main from "./component/main/Main";
 
 class App extends Component {
   render() {
-    return <div className="App"></div>;
+    return (
+      <section className="section">
+        <Header />
+        <Main />
+      </section>
+    );
   }
 }
 
