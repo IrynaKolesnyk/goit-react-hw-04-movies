@@ -14,8 +14,8 @@ const HeaderStyled = styled.header`
     margin-right: 70px;
   }
   .navigetionLink {
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 900;
+    font-size: 30px;
     text-decoration: none;
     color: rgb(129, 159, 245);
     text-transform: uppercase;
@@ -26,6 +26,7 @@ const HeaderStyled = styled.header`
 
   .activeNavLink {
     color: #5f73a1;
+    margin-bottom: 20px;
   }
 `;
 

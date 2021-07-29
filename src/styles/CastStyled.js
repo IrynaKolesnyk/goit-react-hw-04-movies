@@ -1,31 +1,19 @@
 import styled from "styled-components";
 
-const HomePageStyled = styled.div`
-  text-align: center;
-  .title {
-    margin-bottom: 40px;
-    font-style: normal;
-    color: #713892;
-    font-weight: 900;
-    font-size: 50px;
-    line-height: 1.22;
-    text-align: center;
-  }
-
-  .homeList {
+const CastStyled = styled.div`
+  .castList {
     display: grid;
     max-width: calc(100vw - 48px);
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 16px;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     padding: 0;
     list-style: none;
     margin-left: auto;
     margin-right: auto;
   }
-
-  .homeItem {
+  .castItem {
     padding: 10px;
     text-align: center;
     border-radius: 2px;
@@ -36,15 +24,9 @@ const HomePageStyled = styled.div`
       transform: scale(1.03);
     }
   }
-
-  .homeImg {
-    width: 100%;
-    object-fit: cover;
-  }
-  .movieTitle {
-    display: block;
-    margin: 10px 0;
+  .castTitle {
+    margin-top: 20px;
   }
 `;
 
-export default HomePageStyled;
+export default CastStyled;
