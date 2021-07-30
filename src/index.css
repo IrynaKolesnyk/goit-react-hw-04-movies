@@ -63,3 +63,12 @@ a {
   text-align: center;
   color: #5f73a1;
 }
+
+.moviesWrapper {
+  position: relative;
+}
+
+.loader {
+  text-align: center;
+  align-items: center;
+}

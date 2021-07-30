@@ -8,7 +8,13 @@ const Main = () => {
     <main>
       <Suspense
         fallback={
-          <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+          <Loader
+            type="ThreeDots"
+            color="#00BFFF"
+            height={80}
+            width={80}
+            className="loader"
+          />
         }
       >
         <Switch>

@@ -1,5 +1,4 @@
 import { lazy } from "react";
-import NotFoundPage from "../pages/NotFoundPages";
 
 const mainRoutes = [
   {
@@ -20,7 +19,6 @@ const mainRoutes = [
     exact: false,
     component: lazy(() => import("../pages/MovieDetailsPage")),
   },
-  { name: "pageNotFound", path: "/pageNotFound", component: NotFoundPage },
 ];
 
 export default mainRoutes;

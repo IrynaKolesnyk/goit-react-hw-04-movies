@@ -1,18 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { fetchMovieDetails } from "../services/Api";
 import MovieDetailsPageStyled from "../styles/MovieDetailsPageStyled";
-import Reviews from "../pages/Reviews";
-import Cast from "./Cast";
+import Loader from "react-loader-spinner";
+import AppLoader from "../component/AppLoader";
+
+const Cast = lazy(() => import("./Cast"));
+const Reviews = lazy(() => import("./Reviews"));
 
 class MovieDetailsPage extends Component {
   state = {
     moviesDetails: {},
     from: "",
+    isLoading: false,
   };
 
   async componentDidMount() {
     const id = this.props.match.params.id || "";
+    this.setState({ isLoading: true });
     await fetchMovieDetails(id)
       .then((results) =>
         this.setState({
@@ -20,16 +25,19 @@ class MovieDetailsPage extends Component {
           from: this.props.location.state.from,
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
   }
 
   render() {
-    const { moviesDetails } = this.state;
+    const { moviesDetails, isLoading } = this.state;
     const id = this.props.match.params.id || "";
 
     return (
       <div className="container">
-        {moviesDetails.id ? (
+        {moviesDetails.id && (
           <MovieDetailsPageStyled>
             <button
               className="goBackBtn"
@@ -73,15 +81,26 @@ class MovieDetailsPage extends Component {
             </div>
 
             <div className="castReviews">
+              <Suspense
+                fallback={
+                  <Loader
+                    type="ThreeDots"
+                    color="#00BFFF"
+                    height={80}
+                    width={80}
+                    className="loader"
+                  />
+                }
+              ></Suspense>
               <Switch>
                 <Route path="/movies/:id/reviews" exact component={Reviews} />
                 <Route path="/movies/:id/cast" exact component={Cast} />
               </Switch>
+              <Suspense />
             </div>
           </MovieDetailsPageStyled>
-        ) : (
-          <h2 className="notFound">Page not found </h2>
         )}
+        {isLoading && <AppLoader />}
       </div>
     );
   }

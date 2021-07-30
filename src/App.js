@@ -5,7 +5,7 @@ import Main from "./component/main/Main";
 class App extends Component {
   render() {
     return (
-      <section className="section">
+      <section className="container">
         <Header />
         <Main />
       </section>

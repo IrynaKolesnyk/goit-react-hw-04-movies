@@ -32,7 +32,7 @@ class Searchbar extends Component {
             onChange={this.handleChange}
             autoComplete="off"
             autoFocus
-            placeholder="Search images and photos"
+            placeholder="Search movies"
           />
         </form>
       </MoviesPageStyled>

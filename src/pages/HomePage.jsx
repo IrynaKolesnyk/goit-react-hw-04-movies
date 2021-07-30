@@ -2,23 +2,28 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import HomePageStyled from "../styles/HomePageStyled";
 import { fetchTrendingMovies } from "../services/Api";
+import AppLoader from "../component/AppLoader";
 
 class HomePage extends Component {
   state = {
     trendingMovies: [],
+    isLoading: false,
   };
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
     await fetchTrendingMovies()
       .then((results) => this.setState({ trendingMovies: results }))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
   }
 
   render() {
-    const { trendingMovies } = this.state;
-    console.log(this.state.trendingMovies);
+    const { trendingMovies, isLoading } = this.state;
     return (
-      <div className="container">
+      <>
         <HomePageStyled>
           <h2 className="title">Trending today</h2>
           <ul className="homeList">
@@ -45,7 +50,8 @@ class HomePage extends Component {
               ))}
           </ul>
         </HomePageStyled>
-      </div>
+        {isLoading && <AppLoader />}
+      </>
     );
   }
 }
