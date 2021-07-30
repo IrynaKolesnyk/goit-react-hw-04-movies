@@ -41,3 +41,5 @@ class MoviesPage extends Component {
 }
 
 export default MoviesPage;
+
+//<button type="button" onClick={()=> history.pushState(location.state.from)}>Go back</button>

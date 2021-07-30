@@ -20,14 +20,19 @@ class Cast extends Component {
       <CastStyled>
         {castData.id ? (
           <ul className="castList">
-            {castData.cast.map((item) => (
-              <li className="castItem" key={item.id}>
+            {castData.cast.map(({ id, profile_path, name }) => (
+              <li className="castItem" key={id}>
                 <img
                   className="castImg"
-                  src={"https://image.tmdb.org/t/p/w300" + item.profile_path}
-                  alt={item.name}
+                  // src={
+                  //   profile_path
+                  //     ? `https://image.tmdb.org/t/p/w300 + ${profile_path}`
+                  //     : `../images/unnamed.jpg`
+                  // }
+                  src={"https://image.tmdb.org/t/p/w300" + profile_path}
+                  alt={name}
                 />
-                <h2 className="castTitle">{item.name}</h2>
+                <h2 className="castTitle">{name}</h2>
               </li>
             ))}
           </ul>

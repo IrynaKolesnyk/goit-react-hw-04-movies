@@ -1,18 +1,26 @@
-import HomePage from "../pages/HomePage";
-import MoviesPage from "../pages/MoviesPage";
-import MovieDetailsPage from "../pages/MovieDetailsPage";
+import { lazy } from "react";
+import NotFoundPage from "../pages/NotFoundPages";
 
 const mainRoutes = [
-  { name: "home", path: "/", exact: true, component: HomePage },
-  { name: "movies", path: "/movies", exact: true, component: MoviesPage },
+  {
+    name: "home",
+    path: "/",
+    exact: true,
+    component: lazy(() => import("../pages/HomePage")),
+  },
+  {
+    name: "movies",
+    path: "/movies",
+    exact: true,
+    component: lazy(() => import("../pages/MoviesPage")),
+  },
   {
     name: "movieDetails",
     path: "/movies/:id",
     exact: false,
-    component: MovieDetailsPage,
+    component: lazy(() => import("../pages/MovieDetailsPage")),
   },
-  // { name: "movieDetailsPage", path: "/movieDetailsPage", exact: true },
-  // { name: "cast", path: "/cast", exact: true },
-  // { name: "reviews", path: "/reviews", exact: true },
+  { name: "pageNotFound", path: "/pageNotFound", component: NotFoundPage },
 ];
+
 export default mainRoutes;

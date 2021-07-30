@@ -11,6 +11,10 @@ class MovieDetailsPage extends Component {
   };
 
   async componentDidMount() {
+    // this.props.history.push({
+    //   pathname: "/home",
+    //   state: { from: this.props.location.pathname },
+    // });
     const id = this.props.match.params.id || "";
     await fetchMovieDetails(id)
       .then((results) => this.setState({ moviesDetails: results }))
@@ -69,6 +73,10 @@ class MovieDetailsPage extends Component {
         ) : (
           <h2 className="notFound">Page not found </h2>
         )}
+        {/* <button
+          type="button"
+          onClick={() => history.push(location.state.from)}
+        ></button> */}
       </div>
     );
   }
