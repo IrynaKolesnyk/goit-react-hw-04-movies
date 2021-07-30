@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { fetchMovieCast } from "../services/Api";
 import CastStyled from "../styles/CastStyled";
+import defaultImg from "../images/unnamed.jpg";
 
 class Cast extends Component {
   state = {
@@ -24,12 +25,11 @@ class Cast extends Component {
               <li className="castItem" key={id}>
                 <img
                   className="castImg"
-                  // src={
-                  //   profile_path
-                  //     ? `https://image.tmdb.org/t/p/w300 + ${profile_path}`
-                  //     : `../images/unnamed.jpg`
-                  // }
-                  src={"https://image.tmdb.org/t/p/w300" + profile_path}
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                      : defaultImg
+                  }
                   alt={name}
                 />
                 <h2 className="castTitle">{name}</h2>

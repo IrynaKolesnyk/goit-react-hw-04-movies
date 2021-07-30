@@ -8,16 +8,18 @@ import Cast from "./Cast";
 class MovieDetailsPage extends Component {
   state = {
     moviesDetails: {},
+    from: "",
   };
 
   async componentDidMount() {
-    // this.props.history.push({
-    //   pathname: "/home",
-    //   state: { from: this.props.location.pathname },
-    // });
     const id = this.props.match.params.id || "";
     await fetchMovieDetails(id)
-      .then((results) => this.setState({ moviesDetails: results }))
+      .then((results) =>
+        this.setState({
+          moviesDetails: results,
+          from: this.props.location.state.from,
+        })
+      )
       .catch((error) => console.log(error));
   }
 
@@ -27,6 +29,13 @@ class MovieDetailsPage extends Component {
 
     return (
       <div className="container">
+        <button
+          className="goBackBtn"
+          type="button"
+          onClick={() => this.props.history.push(this.state.from)}
+        >
+          Go back
+        </button>
         {moviesDetails.id ? (
           <MovieDetailsPageStyled>
             <div className="wrapper">
@@ -73,10 +82,6 @@ class MovieDetailsPage extends Component {
         ) : (
           <h2 className="notFound">Page not found </h2>
         )}
-        {/* <button
-          type="button"
-          onClick={() => history.push(location.state.from)}
-        ></button> */}
       </div>
     );
   }

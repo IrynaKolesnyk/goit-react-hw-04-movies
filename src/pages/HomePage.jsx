@@ -25,7 +25,13 @@ class HomePage extends Component {
             {trendingMovies.length &&
               trendingMovies.map((movie) => (
                 <li className="homeItem" key={movie.id}>
-                  <Link to={`/movies/${movie.id}`} className="homeLink">
+                  <Link
+                    to={{
+                      pathname: `/movies/${movie.id}`,
+                      state: { from: this.props.location.pathname },
+                    }}
+                    className="homeLink"
+                  >
                     <img
                       src={
                         "https://image.tmdb.org/t/p/w300" + movie.poster_path
