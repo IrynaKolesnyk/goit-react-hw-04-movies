@@ -2,7 +2,8 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = "09d08e04d534bbedc28bdfdcf97f61d4";
+// process.env.REACT_APP_API_KEY;
 
 export const fetchTrendingMovies = async () => {
   try {
