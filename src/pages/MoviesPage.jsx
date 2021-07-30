@@ -1,41 +1,49 @@
 import React, { Component } from "react";
-import MoviesPageStyled from "../styles/MoviesPageStyled";
+
+import MoviesList from "../component/moviesList/MoviesList";
+import Searchbar from "../component/searchbar/Searchbar";
+import { fetchMovieByQuery } from "../services/Api";
 
 class MoviesPage extends Component {
   state = {
-    query: "",
+    searchQuery: "",
+    moviesData: [],
   };
 
-  handleChange = (e) => {
-    this.setState({ query: e.currentTarget.value });
+  componentDidMount() {}
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchQuery !== this.state.searchQuery) {
+      this.fetchMovies();
+    }
+  }
+
+  onChangeQuery = (query) => {
+    this.setState({
+      searchQuery: query,
+      moviesData: [],
+    });
+    this.props.history.push({ search: `query=${query}` });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    this.props.onSubmit(this.state.query);
-    this.setState({ query: "" });
+  fetchMovies = async () => {
+    const { searchQuery } = this.state;
+    await fetchMovieByQuery(searchQuery)
+      .then((response) =>
+        this.setState({
+          moviesData: response,
+        })
+      )
+      .catch((error) => console.log(error));
   };
 
   render() {
+    const { moviesData } = this.state;
+    console.log(this.state.moviesData);
     return (
-      <MoviesPageStyled className="Searchbar">
-        <form className="SearchForm" onSubmit={this.handleSubmit}>
-          <button type="submit" className="SearchForm-button">
-            <span className="SearchForm-button-label">Search</span>
-          </button>
-
-          <input
-            className="SearchForm-input"
-            type="text"
-            value={this.state.query}
-            onChange={this.handleChange}
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-          />
-        </form>
-      </MoviesPageStyled>
+      <div>
+        <Searchbar onSubmit={this.onChangeQuery} />
+        {moviesData.length > 0 && <MoviesList moviesData={moviesData} />}
+      </div>
     );
   }
 }
@@ -43,3 +51,7 @@ class MoviesPage extends Component {
 export default MoviesPage;
 
 //<button type="button" onClick={()=> history.pushState(location.state.from)}>Go back</button>
+// search: `query=${searchQuery}`,
+//  { search: searchQuery;}
+
+// const id = this.props.match.params.id || "";

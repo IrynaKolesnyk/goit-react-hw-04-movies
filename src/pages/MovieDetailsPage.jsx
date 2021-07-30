@@ -29,15 +29,15 @@ class MovieDetailsPage extends Component {
 
     return (
       <div className="container">
-        <button
-          className="goBackBtn"
-          type="button"
-          onClick={() => this.props.history.push(this.state.from)}
-        >
-          Go back
-        </button>
         {moviesDetails.id ? (
           <MovieDetailsPageStyled>
+            <button
+              className="goBackBtn"
+              type="button"
+              onClick={() => this.props.history.push(this.state.from)}
+            >
+              Go back
+            </button>
             <div className="wrapper">
               <img
                 src={
