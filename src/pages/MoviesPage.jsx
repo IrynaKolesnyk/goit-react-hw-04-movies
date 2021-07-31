@@ -4,7 +4,7 @@ import MoviesList from "../component/moviesList/MoviesList";
 import Searchbar from "../component/searchbar/Searchbar";
 import { fetchMovieByQuery } from "../services/Api";
 import AppLoader from "../component/AppLoader";
-import qs from "query-string";
+import queryString from "query-string";
 
 class MoviesPage extends Component {
   state = {
@@ -16,7 +16,7 @@ class MoviesPage extends Component {
   componentDidMount() {
     const { location } = this.props;
 
-    const { query } = qs.parse(location.search);
+    const { query } = queryString.parse(location.search);
 
     if (query) {
       this.setState({

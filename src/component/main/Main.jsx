@@ -23,7 +23,7 @@ const Main = () => {
               path={route.path}
               component={route.component}
               exact={route.exact}
-              key={route.path}
+              key={route.name}
             />
           ))}
         </Switch>

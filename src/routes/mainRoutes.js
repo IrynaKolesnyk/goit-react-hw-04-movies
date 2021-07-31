@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import NotFoundPage from "../pages/NotFoundPage.jsx";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const mainRoutes = [
   {
@@ -20,10 +20,7 @@ const mainRoutes = [
     exact: false,
     component: lazy(() => import("../pages/MovieDetailsPage")),
   },
-  {
-    name: "notFound",
-    component: { NotFoundPage },
-  },
+  { name: "NotFoundPage", component: NotFoundPage },
 ];
 
 export default mainRoutes;
