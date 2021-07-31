@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
 
 const mainRoutes = [
   {
@@ -18,6 +19,10 @@ const mainRoutes = [
     path: "/movies/:id",
     exact: false,
     component: lazy(() => import("../pages/MovieDetailsPage")),
+  },
+  {
+    name: "notFound",
+    component: { NotFoundPage },
   },
 ];
 
